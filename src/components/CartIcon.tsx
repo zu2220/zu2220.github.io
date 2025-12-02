@@ -1,10 +1,17 @@
 import React from 'react';
 import { ShoppingCart } from 'lucide-react';
 import { useCart } from '../context/CartContext';
+import { useAuth } from '../context/AuthContext';
 
 const CartIcon: React.FC = () => {
   const { getTotalItems, openCart } = useCart();
+  const { state: authState } = useAuth();
   const totalItems = getTotalItems();
+
+  // 🔒 Solo mostrar carrito si el usuario es CUSTOMER
+  if (authState.user?.role !== 'CUSTOMER') {
+    return null;
+  }
 
   return (
     <button

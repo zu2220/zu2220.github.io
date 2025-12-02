@@ -12,7 +12,6 @@ import {
   Package,
   Store,
   Truck,
-  Lock,
 } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
@@ -386,6 +385,7 @@ const Checkout: React.FC = () => {
     }
   };
 
+  // ✅ VALIDACIÓN: Verificar que el carrito no esté vacío
   if (state.items.length === 0 && !lastOrderNumber) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
@@ -399,42 +399,6 @@ const Checkout: React.FC = () => {
           >
             Ver Catálogo
           </Link>
-        </div>
-      </div>
-    );
-  }
-  if (!authState.isAuthenticated) {
-    return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="max-w-md mx-auto text-center">
-          <div className="bg-white rounded-lg shadow-lg p-8">
-            <Lock className="h-16 w-16 text-gray-300 mx-auto mb-4" />
-            <h2 className="text-2xl font-bold text-gray-800 mb-4">Acceso Requerido</h2>
-            <p className="text-gray-600 mb-6">
-              Necesitas iniciar sesión para continuar con tu compra. Tu carrito se mantendrá
-              guardado.
-            </p>
-            <div className="space-y-3">
-              <Link
-                to="/login"
-                className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition-colors block"
-              >
-                Iniciar Sesión
-              </Link>
-              <Link
-                to="/register"
-                className="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg transition-colors block"
-              >
-                Crear Cuenta
-              </Link>
-              <Link
-                to="/catalogo"
-                className="w-full bg-gray-100 hover:bg-gray-200 text-gray-800 font-medium py-3 px-6 rounded-lg transition-colors block"
-              >
-                Seguir Comprando
-              </Link>
-            </div>
-          </div>
         </div>
       </div>
     );

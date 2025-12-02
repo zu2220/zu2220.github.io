@@ -24,6 +24,7 @@ import AdminPanel from './pages/AdminPanel';
 import AdminRoute from './routes/AdminRoute';
 import MyOrdersPage from './pages/MyOrdersPage';
 import ProtectedRoute from './routes/ProtectedRoute';
+import CustomerRoute from './routes/CustomerRoute';
 import AdminProducts from './pages/AdminProducts';
 import ChatWidget from './components/ChatWidget';
 import AdminDashboard from './pages/AdminDashboard';
@@ -42,7 +43,14 @@ const AppContent: React.FC = () => {
             <Route path="/catalogo" element={<Catalogo />} />
             <Route path="/catalogo/:id" element={<ProductoDetalle />} />
             <Route path="/contacto" element={<Contacto />} />
-            <Route path="/checkout" element={<Checkout />} />
+            <Route
+              path="/checkout"
+              element={
+                <CustomerRoute>
+                  <Checkout />
+                </CustomerRoute>
+              }
+            />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/tracking/:orderId" element={<TrackingPage />} />
